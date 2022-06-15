@@ -1,0 +1,42 @@
+<script>
+	function graphEdge(Adjacent, m, n)
+	{
+		Adjacent[m].push(n);
+		Adjacent[n].push(m);
+	}
+	function Graphfn(m, Adjacent, Visit)
+	{
+		Visit[m] = true;
+		document.write(m+" ");
+		
+	for (var p = 0; p < Adjacent[m].length; p++)
+	if (Visit[Adjacent[m][p]] == false)
+		Graphfn(Adjacent[m][p], Adjacent, Visit);
+	}
+	function Graph_g(Adjacent, x)
+	{
+		var Visit = new Array(x);
+		for(var p = 0;p < x; p++)
+		{
+			Visit[p]=false;
+		}
+	    for (var m = 0; m < x; m++)
+		if (Visit[m] == false)
+			Graphfn(m, Adjacent, Visit);
+	}
+	var x = 6;
+	var Adjacent = new Array(x);
+	for(var p = 0; p < x; p++)
+	{
+		Adjacent[p] = [];
+	}
+	graphEdge(Adjacent, 0, 1);
+	graphEdge(Adjacent, 0, 2);
+	graphEdge(Adjacent, 0, 5);
+	graphEdge(Adjacent, 1, 1);
+	graphEdge(Adjacent, 1, 2);
+	graphEdge(Adjacent, 2, 5);
+	graphEdge(Adjacent, 3, 1);
+	graphEdge(Adjacent, 2, 5);
+	Graph_g(Adjacent, x);
+</script>
